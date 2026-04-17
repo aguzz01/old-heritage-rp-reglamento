@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Heritage RP - Reglamento</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{
+  background: radial-gradient(circle at 20% 20%, rgba(168,85,247,0.25), transparent 40%),
+              radial-gradient(circle at 80% 30%, rgba(168,85,247,0.2), transparent 40%),
+              radial-gradient(circle at 50% 80%, rgba(168,85,247,0.15), transparent 50%),
+              #020617;
+  color:#e2e8f0;display:flex;overflow-x:hidden}
+.sidebar{width:260px;height:100vh;background: rgba(15,23,42,0.6);backdrop-filter: blur(20px);border-right:1px solid rgba(255,255,255,0.05);position:fixed;padding:20px}
+.nav a{display:block;padding:10px;border-radius:8px;color:#94a3b8;text-decoration:none;margin-bottom:5px;transition:0.3s}
+.nav a:hover, .nav a.active{background: rgba(168,85,247,0.1);color:#a855f7;box-shadow:0 0 10px #a855f7}
+.main{margin-left:260px;padding:40px;width:100%}
+.section{margin-bottom:40px;padding:25px;border-radius:15px;background: rgba(15,23,42,0.5);backdrop-filter: blur(15px);border:1px solid rgba(255,255,255,0.05);transition:0.3s}
+.section:hover{transform: translateY(-5px);box-shadow:0 0 25px rgba(168,85,247,0.2)}
+h1{font-size:32px;margin-bottom:20px}
+h2{color:#a855f7;margin-bottom:15px}
+.rule{margin-bottom:15px;color:#cbd5f5}
+.rule b{color:#e2e8f0}
+.fade-in{animation: fadeIn 0.6s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div style="text-align:center;margin-bottom:20px;">
+    <img src="logo.png" style="width:200px;filter: drop-shadow(0 0 15px #a855f7);">
+  </div>
+  <div class="nav">
+    <a href="#admin" class="active">Administración</a>
+    <a href="#penal">Penalizaciones</a>
+    <a href="#rol">Rol</a>
+    <a href="#vehiculos">Vehículos</a>
+    <a href="#servicios">Servicios</a>
+  </div>
+</div>
+
+<div class="main">
+  <h1 class="fade-in">Reglamento General</h1>
+
+  <div id="admin" class="section fade-in">
+    <h2>1. Disposiciones Administrativas</h2>
+    <div class="rule"><b>1.1 Responsabilidad:</b> El desconocimiento de las normas no exime de su cumplimiento. Eres responsable de tus acciones y de quien use tu cuenta.</div>
+    <div class="rule"><b>1.2 Respeto y Convivencia:</b> Prohibida la toxicidad, discriminación o acoso. La reincidencia grave puede terminar en ban permanente.</div>
+    <div class="rule"><b>1.3 Comunicación:</b> Todo se gestiona exclusivamente mediante tickets.</div>
+    <div class="rule"><b>1.4 Privacidad:</b> Divulgar datos personales o links privados implica ban permanente.</div>
+    <div class="rule"><b>1.5 Colaboración:</b> Es obligatorio colaborar con el staff. Mini-mod y reportes falsos serán sancionados.</div>
+  </div>
+
+  <div id="penal" class="section fade-in">
+    <h2>2. Warns y Penalizaciones</h2>
+    <div class="rule"><b>2.1 Warns:</b> 10 warns = ban automático de 7 días.</div>
+    <div class="rule"><b>2.2 Penalizaciones:</b> 3 penalizaciones = ban 7 días. Reincidencia = permanente.</div>
+    <div class="rule"><b>2.3 Evasión:</b> Multicuentas o evasión = ban definitivo.</div>
+  </div>
+
+  <div id="rol" class="section fade-in">
+    <h2>3. Normativa de Rol</h2>
+    <div class="rule"><b>3.1 Calidad:</b> Prohibido Powergaming, Metagaming y Combat Log.</div>
+    <div class="rule"><b>3.2 OOC:</b> Uso obligatorio de //.</div>
+    <div class="rule"><b>3.3 Seriedad:</b> Roles coherentes y acordes a Roblox.</div>
+    <div class="rule"><b>3.4 Interrupciones:</b> Prohibido sabotear roles.</div>
+  </div>
+
+  <div id="vehiculos" class="section fade-in">
+    <h2>4. Conducción y Vehículos</h2>
+    <div class="rule"><b>4.1 Manejo Temerario:</b> Prohibido conducir de forma irreal o peligrosa.</div>
+    <div class="rule"><b>4.3 Accidentes:</b> Spawn es void. Hit & Run o choques intencionales serán sancionados.</div>
+    <div class="rule"><b>4.4 Restricciones:</b> Solo vehículos autorizados. Problemas técnicos no justifican faltas.</div>
+  </div>
+
+  <div id="servicios" class="section fade-in">
+    <h2>5. Servicios y Propiedades</h2>
+    <div class="rule"><b>5.1 Facciones:</b> Requieren formulario y actividad. Llamadas falsas prohibidas.</div>
+    <div class="rule"><b>5.2 Criminalidad:</b> Solo en TP Activo con lógica y policías disponibles.</div>
+    <div class="rule"><b>5.3 Propiedades:</b> Uso regular obligatorio y funcionamiento realista.</div>
+  </div>
+
+  <div class="section fade-in">
+    <h2>¿Dudas?</h2>
+    <div class="rule">Abre un ticket para recibir asistencia del staff.</div>
+  </div>
+
+</div>
+
+<script>
+const links = document.querySelectorAll('.nav a');
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    links.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
