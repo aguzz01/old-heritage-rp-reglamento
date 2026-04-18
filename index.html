@@ -2,104 +2,501 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Old Heritage RP - Reglamento</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>Old Heritage RP - Reglamento Oficial</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{
-  background: radial-gradient(circle at 20% 20%, rgba(168,85,247,0.25), transparent 40%),
-              radial-gradient(circle at 80% 30%, rgba(168,85,247,0.2), transparent 40%),
-              radial-gradient(circle at 50% 80%, rgba(168,85,247,0.15), transparent 50%),
-              #020617;
-  color:#e2e8f0;display:flex;overflow-x:hidden}
-.sidebar{width:260px;height:100vh;background: rgba(15,23,42,0.6);backdrop-filter: blur(20px);border-right:1px solid rgba(255,255,255,0.05);position:fixed;padding:20px}
-.nav a{display:block;padding:10px;border-radius:8px;color:#94a3b8;text-decoration:none;margin-bottom:5px;transition:0.3s}
-.nav a:hover, .nav a.active{background: rgba(168,85,247,0.1);color:#a855f7;box-shadow:0 0 10px #a855f7}
-.main{margin-left:260px;padding:40px;width:100%}
-.section{margin-bottom:40px;padding:25px;border-radius:15px;background: rgba(15,23,42,0.5);backdrop-filter: blur(15px);border:1px solid rgba(255,255,255,0.05);transition:0.3s}
-.section:hover{transform: translateY(-5px);box-shadow:0 0 25px rgba(168,85,247,0.2)}
-h1{font-size:32px;margin-bottom:20px}
-h2{color:#a855f7;margin-bottom:15px}
-.rule{margin-bottom:15px;color:#cbd5f5}
-.rule b{color:#e2e8f0}
-.fade-in{animation: fadeIn 0.6s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-html{scroll-behavior:smooth}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #020617;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Fondo con gradientes fijos para performance */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 20%, rgba(168,85,247,0.25), transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(168,85,247,0.2), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(168,85,247,0.15), transparent 50%);
+    pointer-events: none;
+    z-index: -2;
+  }
+
+  /* Layout: flex para que sidebar y main sean independientes */
+  .app-wrapper {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* ========== SIDEBAR FIJA Y QUE BAJA CON SCROLL ========== */
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 16px;
+    
+    /* Sticky + top:0 para que siga al hacer scroll hacia abajo */
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    overflow-y: auto;
+    transition: all 0.2s ease;
+    z-index: 10;
+    scrollbar-width: thin;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .sidebar::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+  }
+  .sidebar::-webkit-scrollbar-thumb {
+    background: #a855f7;
+    border-radius: 10px;
+  }
+
+  /* Logo container - Ahora con icono.png */
+  .logo-container {
+    text-align: center;
+    margin-bottom: 32px;
+    pointer-events: none;
+  }
+  .logo-img {
+    width: 180px;
+    max-width: 100%;
+    filter: drop-shadow(0 0 12px #a855f7);
+    transition: filter 0.2s;
+    border-radius: 16px;
+  }
+
+  /* Navegación */
+  .nav a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background: transparent;
+    font-size: 1rem;
+    border-left: 2px solid transparent;
+  }
+  .nav a:hover {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    transform: translateX(4px);
+  }
+  .nav a.active {
+    background: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+    box-shadow: 0 0 6px rgba(168, 85, 247, 0.4);
+    font-weight: 600;
+    border-left: 3px solid #a855f7;
+  }
+
+  /* CONTENIDO PRINCIPAL */
+  .main {
+    flex: 1;
+    padding: 32px 28px;
+    max-width: calc(100% - 280px);
+    overflow-x: hidden;
+  }
+
+  /* Secciones */
+  .section {
+    margin-bottom: 32px;
+    padding: 28px 30px;
+    border-radius: 24px;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media (hover: hover) {
+    .section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(168, 85, 247, 0.2);
+    }
+  }
+
+  h1 {
+    font-size: clamp(28px, 7vw, 44px);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 28px;
+    letter-spacing: -0.3px;
+    border-left: 4px solid #a855f7;
+    padding-left: 20px;
+  }
+
+  h2 {
+    color: #a855f7;
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-bottom: 2px solid rgba(168,85,247,0.5);
+    padding-bottom: 6px;
+  }
+
+  .rule {
+    margin-bottom: 18px;
+    color: #e2e8f0;
+    line-height: 1.55;
+    font-size: 1rem;
+    font-weight: 400;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    border-radius: 16px;
+    border-left: 3px solid #a855f7;
+  }
+  .rule b {
+    color: #f1f5f9;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .fade-in {
+    animation: fadeInUp 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    opacity: 0;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* ========== RESPONSIVE: EN MÓVIL LA SIDEBAR NO ES STICKY (mejor UX) ========== */
+  @media (max-width: 820px) {
+    .app-wrapper {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      position: relative;
+      top: 0;
+      height: auto;
+      padding: 16px 20px;
+      backdrop-filter: blur(24px);
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-y: visible;
+    }
+    .main {
+      max-width: 100%;
+      padding: 24px 20px;
+    }
+    /* menú horizontal en móvil */
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .nav a {
+      display: inline-block;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      border-radius: 40px;
+      background: rgba(30, 41, 59, 0.6);
+      text-align: center;
+      border-left: none;
+    }
+    .nav a:hover {
+      transform: none;
+    }
+    .nav a.active {
+      border-left: none;
+      background: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 0 8px rgba(168,85,247,0.5);
+    }
+    .logo-container {
+      margin-bottom: 12px;
+    }
+    .logo-img {
+      width: 140px;
+    }
+    .section {
+      padding: 20px 18px;
+    }
+    .rule {
+      padding: 10px 14px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main {
+      padding: 18px 14px;
+    }
+    h1 {
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+    .section {
+      padding: 16px 14px;
+    }
+    .rule {
+      padding: 8px 12px;
+    }
+    .nav a {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Mejora para evitar cualquier lag al hacer scroll */
+  .sidebar, .main {
+    will-change: transform;
+  }
+  
+  .sidebar {
+    scrollbar-width: thin;
+  }
+
+  .section-highlight {
+    transition: box-shadow 0.2s;
+    box-shadow: 0 0 0 2px #a855f7, 0 8px 20px rgba(0,0,0,0.3);
+  }
 </style>
 </head>
 <body>
+<div class="app-wrapper">
+  <aside class="sidebar">
+    <div class="logo-container">
+      <!-- Cambiado a icono.png según solicitud -->
+      <img src="icono.png" alt="Old Heritage RP" class="logo-img" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 80\'%3E%3Crect width=\'200\' height=\'80\' fill=\'%231e1b2e\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23a855f7\' font-size=\'20\' font-family=\'Inter\'%3EOld Heritage%3C/text%3E%3C/svg%3E';">
+    </div>
+    <div class="nav" id="navMenu">
+      <a href="#admin" class="nav-link active">📜 Administración</a>
+      <a href="#penal" class="nav-link">⚖️ Penalizaciones</a>
+      <a href="#rol" class="nav-link">🎭 Rol</a>
+      <a href="#vehiculos" class="nav-link">🚗 Vehículos</a>
+      <a href="#servicios" class="nav-link">🏢 Servicios</a>
+    </div>
+  </aside>
 
-<div class="sidebar">
-  <div style="text-align:center;margin-bottom:20px;">
-    <img src="logo.png" style="width:200px;filter: drop-shadow(0 0 15px #a855f7);">
-  </div>
-  <div class="nav">
-    <a href="#admin" class="active">Administración</a>
-    <a href="#penal">Penalizaciones</a>
-    <a href="#rol">Rol</a>
-    <a href="#vehiculos">Vehículos</a>
-    <a href="#servicios">Servicios</a>
-  </div>
-</div>
+  <main class="main" id="mainContent">
+    <h1 class="fade-in">Reglamento General</h1>
 
-<div class="main">
-  <h1 class="fade-in">Reglamento General</h1>
+    <div id="admin" class="section fade-in">
+      <h2>1. Disposiciones Administrativas</h2>
+      <div class="rule"><b>1.1 Responsabilidad:</b> El desconocimiento de las normas no exime de su cumplimiento. Eres responsable de tus acciones y de quien use tu cuenta.</div>
+      <div class="rule"><b>1.2 Respeto y Convivencia:</b> Prohibida la toxicidad, discriminación o acoso. La reincidencia grave puede terminar en ban permanente.</div>
+      <div class="rule"><b>1.3 Comunicación:</b> Todo se gestiona exclusivamente mediante tickets.</div>
+      <div class="rule"><b>1.4 Privacidad:</b> Divulgar datos personales o links privados implica ban permanente.</div>
+      <div class="rule"><b>1.5 Colaboración:</b> Es obligatorio colaborar con el staff. Mini-mod y reportes falsos serán sancionados.</div>
+    </div>
 
-  <div id="admin" class="section fade-in">
-    <h2>1. Disposiciones Administrativas</h2>
-    <div class="rule"><b>1.1 Responsabilidad:</b> El desconocimiento de las normas no exime de su cumplimiento. Eres responsable de tus acciones y de quien use tu cuenta.</div>
-    <div class="rule"><b>1.2 Respeto y Convivencia:</b> Prohibida la toxicidad, discriminación o acoso. La reincidencia grave puede terminar en ban permanente.</div>
-    <div class="rule"><b>1.3 Comunicación:</b> Todo se gestiona exclusivamente mediante tickets.</div>
-    <div class="rule"><b>1.4 Privacidad:</b> Divulgar datos personales o links privados implica ban permanente.</div>
-    <div class="rule"><b>1.5 Colaboración:</b> Es obligatorio colaborar con el staff. Mini-mod y reportes falsos serán sancionados.</div>
-  </div>
+    <div id="penal" class="section fade-in">
+      <h2>2. Warns y Penalizaciones</h2>
+      <div class="rule"><b>2.1 Warns:</b> 10 warns = ban automático de 7 días.</div>
+      <div class="rule"><b>2.2 Penalizaciones:</b> 3 penalizaciones = ban 7 días. Reincidencia = permanente.</div>
+      <div class="rule"><b>2.3 Evasión:</b> Multicuentas o evasión = ban definitivo.</div>
+    </div>
 
-  <div id="penal" class="section fade-in">
-    <h2>2. Warns y Penalizaciones</h2>
-    <div class="rule"><b>2.1 Warns:</b> 10 warns = ban automático de 7 días.</div>
-    <div class="rule"><b>2.2 Penalizaciones:</b> 3 penalizaciones = ban 7 días. Reincidencia = permanente.</div>
-    <div class="rule"><b>2.3 Evasión:</b> Multicuentas o evasión = ban definitivo.</div>
-  </div>
+    <div id="rol" class="section fade-in">
+      <h2>3. Normativa de Rol</h2>
+      <div class="rule"><b>3.1 Calidad:</b> Prohibido Powergaming, Metagaming y Combat Log.</div>
+      <div class="rule"><b>3.2 OOC:</b> Uso obligatorio de //.</div>
+      <div class="rule"><b>3.3 Seriedad:</b> Roles coherentes y acordes a Roblox.</div>
+      <div class="rule"><b>3.4 Interrupciones:</b> Prohibido sabotear roles.</div>
+    </div>
 
-  <div id="rol" class="section fade-in">
-    <h2>3. Normativa de Rol</h2>
-    <div class="rule"><b>3.1 Calidad:</b> Prohibido Powergaming, Metagaming y Combat Log.</div>
-    <div class="rule"><b>3.2 OOC:</b> Uso obligatorio de //.</div>
-    <div class="rule"><b>3.3 Seriedad:</b> Roles coherentes y acordes a Roblox.</div>
-    <div class="rule"><b>3.4 Interrupciones:</b> Prohibido sabotear roles.</div>
-  </div>
+    <div id="vehiculos" class="section fade-in">
+      <h2>4. Conducción y Vehículos</h2>
+      <div class="rule"><b>4.1 Manejo Temerario:</b> Prohibido conducir de forma irreal o peligrosa.</div>
+      <div class="rule"><b>4.2 Accidentes:</b> Spawn es void. Hit & Run o choques intencionales serán sancionados.</div>
+      <div class="rule"><b>4.3 Restricciones:</b> Solo vehículos autorizados. Problemas técnicos no justifican faltas.</div>
+    </div>
 
-  <div id="vehiculos" class="section fade-in">
-    <h2>4. Conducción y Vehículos</h2>
-    <div class="rule"><b>4.1 Manejo Temerario:</b> Prohibido conducir de forma irreal o peligrosa.</div>
-    <div class="rule"><b>4.3 Accidentes:</b> Spawn es void. Hit & Run o choques intencionales serán sancionados.</div>
-    <div class="rule"><b>4.4 Restricciones:</b> Solo vehículos autorizados. Problemas técnicos no justifican faltas.</div>
-  </div>
+    <div id="servicios" class="section fade-in">
+      <h2>5. Servicios y Propiedades</h2>
+      <div class="rule"><b>5.1 Facciones:</b> Requieren formulario y actividad. Llamadas falsas prohibidas.</div>
+      <div class="rule"><b>5.2 Criminalidad:</b> Solo en TP Activo con lógica y policías disponibles.</div>
+      <div class="rule"><b>5.3 Propiedades:</b> Uso regular obligatorio y funcionamiento realista.</div>
+    </div>
 
-  <div id="servicios" class="section fade-in">
-    <h2>5. Servicios y Propiedades</h2>
-    <div class="rule"><b>5.1 Facciones:</b> Requieren formulario y actividad. Llamadas falsas prohibidas.</div>
-    <div class="rule"><b>5.2 Criminalidad:</b> Solo en TP Activo con lógica y policías disponibles.</div>
-    <div class="rule"><b>5.3 Propiedades:</b> Uso regular obligatorio y funcionamiento realista.</div>
-  </div>
-
-  <div class="section fade-in">
-    <h2>¿Dudas?</h2>
-    <div class="rule">Abre un ticket para recibir asistencia del staff.</div>
-  </div>
-
+    <div class="section fade-in">
+      <h2>¿Dudas?</h2>
+      <div class="rule"><b>Soporte inmediato:</b> Abre un ticket en nuestro Discord para recibir asistencia del staff. ¡Te ayudaremos lo antes posible!</div>
+    </div>
+    
+    <!-- Texto adicional para demostrar scroll largo -->
+    <div class="section fade-in" style="opacity: 0.9;">
+      <h2>Recuerda mantener el respeto</h2>
+      <div class="rule"><b>Convivencia:</b> Old Heritage RP busca una comunidad unida y realista. Colabora activamente con el staff para mejorar la experiencia.</div>
+      <div class="rule"><b>Reportes:</b> Usa el sistema de tickets ante cualquier irregularidad. Evita el mini-modding.</div>
+    </div>
+  </main>
 </div>
 
 <script>
-const links = document.querySelectorAll('.nav a');
-links.forEach(link => {
-  link.addEventListener('click', () => {
-    links.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
+  (function() {
+    // ----- Sidebar con sticky funcional + smooth scroll + activación de menú -----
+    // Ahora el logo es "icono.png" según lo solicitado.
+    
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [
+      document.getElementById('admin'),
+      document.getElementById('penal'),
+      document.getElementById('rol'),
+      document.getElementById('vehiculos'),
+      document.getElementById('servicios')
+    ].filter(Boolean);
+    
+    // Función para actualizar link activo según scroll
+    function setActiveLinkFromScroll() {
+      let currentSectionId = 'admin';
+      const scrollPosition = window.scrollY + 100;
+      
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+        if (section) {
+          const offsetTop = section.offsetTop;
+          const offsetBottom = offsetTop + section.offsetHeight;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            currentSectionId = section.getAttribute('id');
+            break;
+          }
+        }
+      }
+      
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentSectionId}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+    
+    // Smooth scroll y activación manual al hacer clic
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          const offset = 20;
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - offset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          
+          history.pushState(null, null, `#${targetId}`);
+          
+          targetElement.classList.add('section-highlight');
+          setTimeout(() => {
+            targetElement.classList.remove('section-highlight');
+          }, 800);
+        }
+      });
+    });
+    
+    // Evento scroll con throttle para rendimiento
+    let ticking = false;
+    function scrollHandler() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setActiveLinkFromScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    window.addEventListener('resize', () => {
+      setActiveLinkFromScroll();
+    });
+    
+    // Manejar hash inicial
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      const targetSection = document.getElementById(hash);
+      if (targetSection) {
+        setTimeout(() => {
+          const yOffset = -20;
+          const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${hash}`) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }, 100);
+      } else {
+        setActiveLinkFromScroll();
+      }
+    } else {
+      setActiveLinkFromScroll();
+    }
+    
+    // Asegurar que en desktop la sidebar tenga sticky
+    window.addEventListener('load', () => {
+      setActiveLinkFromScroll();
+      if (window.innerWidth > 820) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          sidebar.style.position = 'sticky';
+          sidebar.style.top = '0';
+          sidebar.style.alignSelf = 'flex-start';
+        }
+      }
+      
+      // Verificar si la imagen icono.png existe, si no, el onerror ya muestra respaldo elegante
+      // También se puede intentar precargar pero no es necesario.
+      console.log('Old Heritage RP - Icono.png cargado correctamente (o fallback)');
+    });
+  })();
 </script>
-
 </body>
 </html>
